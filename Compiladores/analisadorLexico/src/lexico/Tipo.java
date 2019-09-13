@@ -20,6 +20,7 @@ public enum Tipo {
     SMENOS("-"),
     SMULTIPLICACAO("*"),
     SNUMERO(null),
+    SNUMERO_DECIMAL(null),
     SIDENTIFICADOR(null),
     SABRE_PARENTESIS("("),
     SFECHA_PARENTESIS(")"),

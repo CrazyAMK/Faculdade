@@ -70,7 +70,7 @@ public class AnalisadorLexico {
             return handleSpecialChars(character, pushbackReader);
         }
         
-        return new Token(Tipo.SERRO, null);
+        return new Token(Tipo.SERRO, String.valueOf(character), linha, coluna);
         
     }
     int i = 0;
@@ -99,10 +99,20 @@ public class AnalisadorLexico {
             coluna++;
             num = num.concat(String.valueOf(nextCharacter));
             nextCharacter = (char) pushbackReader.read();
+            if(nextCharacter == '.'){
+                num = num.concat(String.valueOf(nextCharacter));
+                nextCharacter = (char) pushbackReader.read();
+            }
         }
         
         pushbackReader.unread((int) nextCharacter);
-        return new Token(Tipo.SNUMERO, num, linha, coluna);
+        
+        if(num.contains(".")){
+            return new Token(Tipo.SNUMERO_DECIMAL, num, linha, coluna);
+        }else{
+            return new Token(Tipo.SNUMERO, num, linha, coluna);
+        }
+        
     }
     
     private Token handleSpecialChars(char character, PushbackReader pushbackReader) throws IOException{
