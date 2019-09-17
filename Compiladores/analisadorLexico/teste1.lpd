@@ -2,6 +2,7 @@ programa teste;
 inicio
   var x: inteiro;
   x := 300;
-  y := 72.7;
+  x := 300.01;
+  x := x + 10;
   escreva(x);
-  fim.
+fim.

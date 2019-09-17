@@ -32,6 +32,10 @@ public enum Tipo {
    Tipo(String id){
        this.id = id;
    }
+   
+    public String getId() {
+        return id;
+    }
 
    //Traz o tipo baseado no ID
    public static Tipo getTipoById(String id){

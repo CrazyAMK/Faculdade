@@ -63,16 +63,21 @@ public class AnalisadorLexico {
             return handleIdentifierAndReservedWord(character, pushbackReader);
    
         }
+        if (Tipo.SMAIS.getId().equals(String.valueOf(character)) || Tipo.SMENOS.getId().equals(String.valueOf(character))) {
+            return handlePlusAndMinusOperation(character, pushbackReader);
+        }
         if(Character.isDigit(character)){
             return handleDigit(character, pushbackReader);
         }
         if(CHARS_SPECIAIS.contains(String.valueOf(character))){
             return handleSpecialChars(character, pushbackReader);
         }
+
         
         return new Token(Tipo.SERRO, String.valueOf(character), linha, coluna);
         
     }
+    
     int i = 0;
     private Token handleIdentifierAndReservedWord(char character, PushbackReader pushbackReader) throws IOException{
         String id = String.valueOf(character);
@@ -89,6 +94,19 @@ public class AnalisadorLexico {
         Tipo tipo = Tipo.getTipoById(id);
      
         return new Token(tipo, id, linha, coluna);
+    }
+    
+    private Token handlePlusAndMinusOperation(char character, PushbackReader pushbackReader) throws IOException {
+        String operator = String.valueOf(character);
+        char nextCharacter = (char) pushbackReader.read();
+        if (Character.isSpaceChar(nextCharacter)) {
+            Tipo tipo = Tipo.getTipoById(operator);
+            return new Token(tipo, operator);
+        }
+        Token token = handleDigit(nextCharacter, pushbackReader);
+        token.setLexema(operator.concat(token.getLexema()));
+        return token;
+
     }
     
     private Token handleDigit(char character, PushbackReader pushbackReader) throws IOException{
