@@ -3,18 +3,20 @@ import numpy as np
 from PIL import Image
 from matplotlib import pyplot as plt
 from os import system
-
-done = False
-imagemOriginal = []
-imagemModificada = []
+import os.path
 
 def carregaImagem():
     caminhoImg = input("Digite o caminho do arquivo ou o nome: ")
-    # return cv2.imread(caminhoImg)
+        
+
+    while os.path.exists(caminhoImg) == False:
+        system('cls')
+        caminhoImg = input("Arquivo inválido, tente novamente: ")
+        imagemOriginal = cv2.imread(caminhoImg)
+
     imagemOriginal = cv2.imread(caminhoImg)
-    imagemModificada = cv2.imread(caminhoImg)
-    #REVER!!!
-    cv2.imshow('imageModificada', imagemOriginal)
+    print("Imagem carregada com sucesso!!")
+    return cv2.imread(caminhoImg)
 
 def histEscalaCinza(img):
     plt.hist(img.ravel(), 256, [0, 256], label ="Escala de Cinza")
@@ -76,18 +78,25 @@ def main():
 
 
 if __name__ == "__main__":
+
+    done = False
+    imagemOriginal = []
+    imagemModificada = []
+
     while not done:
         system('cls')
         main()
         option = input("Selecione uma opção: ")
 
         if option == '1':
-            carregaImagem()
-            
+            imagemModificada = carregaImagem()
+            cv2.imshow('imageModificada', imagemModificada)
+            histEscalaCinza(imagemModificada)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
         # elif option == '2':  
             
+
         elif option == '7':
             done=True
             exit()
