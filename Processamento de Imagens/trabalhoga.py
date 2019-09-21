@@ -32,13 +32,19 @@ def histEscalaCinza(img, titulo = ""):
     plt.show()
 
 def salvarImagem(img):
+    system('cls')
+    print("|         Salvar imagem         |")
     nome = input("Digite uma nome para o arquivo: ")
     cv2.imwrite(nome+".jpg", img)
 
 def scalaImagem(img):
+    system('cls')
+    print("|         Diminuir Escala da imagem         |")
     scale_percent = int(input("Digite uma escala menor do que 100: "))
 
     while scale_percent >= 100:
+        system('cls')
+        print("|         Diminuir Escala da imagem         |")
         scale_percent = int(input("Escala Invalida, a escala deve ser menor do que 100: "))
     
     width = int(img.shape[1] * scale_percent / 100)
@@ -48,12 +54,15 @@ def scalaImagem(img):
     return cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
 
 def diminuirLargura(img):
-    system('cls')
     widthOriginal = int(img.shape[1]) 
     height = int(img.shape[0])
+    system('cls')
+    print("|         Diminuir Largura da imagem         |")
     print("A largura atual é de: ", widthOriginal)
     width = int(input("Digite um valor menor que a largura: "))
     while width >= int(img.shape[1]):
+        system('cls')
+        print("|         Diminuir Largura da imagem         |")
         print("A largura atual é de: ", widthOriginal)
         width = int(input("Largura Invalida, digite um valor menor que a largura: "))
     
@@ -63,13 +72,14 @@ def diminuirLargura(img):
 
 def diminuirAltura(img):
     system('cls')
+    print("|         Diminuir Altura da imagem         |")
     heightOriginal = int(img.shape[0]) 
     width = int(img.shape[1])
-    print("A largura atual é de: ", heightOriginal)
+    print("A altura atual é de: ", heightOriginal)
     height = int(input("Digite um valor menor que a altura: "))
 
     while height >= int(img.shape[0]):
-        print("A largura atual é de: ", heightOriginal)
+        print("A altura atual é de: ", heightOriginal)
         height = int(input("Altura Invalida, digite um valor menor que a altura: "))
     
     dim = (width, height)
@@ -98,13 +108,10 @@ def reduzirColunaLinha(img):
     return img[::valor, ::valor]
 
 def reduzirTons(img, r, status):
-    # r = 62
     if(status == 0):
         img = np.uint8(img/r) * r
-        print(status)
         return img
     else:
-        print(r)
         img = np.uint8(img/r) * r
         return img
         
@@ -123,23 +130,6 @@ def main():
     print('| 10) Salvar imagem modificada                    |')
     print('| 11) Sair                                        |')
     print(' ------------------------------------------------- ')
-    # caminhoImg = "flor.pgm"
-
-    # # imgOriginal = carregaImagemPB(caminhoImg)
-    # # salvarImagem("Escala.jpg", resized)
-    
-    # imgModificada = carregaImagemPB(caminhoImg)
-
-    # resized = scalaImagem(20, imgModificada)
-
-    # cv2.imshow('imageModificada', resized)
-
-    # histEscalaCinza(resized)
-
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-
-
 
 if __name__ == "__main__":
     system('cls')
@@ -169,7 +159,8 @@ if __name__ == "__main__":
             status = 0
             cv2.waitKey(0)
             cv2.destroyAllWindows()
-        #amplitude
+        
+        #Amplitude
         elif option == '2':  
             imagemModificada = scalaImagem(imagemModificada)
             cv2.imshow('Imagem em Escala', imagemModificada)
@@ -238,8 +229,10 @@ if __name__ == "__main__":
             cv2.destroyAllWindows()
 
         elif option == '10':
-            salvarImagem(imagemModificada)
-
+            if(status == 0):
+                salvarImagem(imagemModificada)
+            else:
+                salvarImagem(imagemQuantizada)
         elif option == '11':
             done=True
             exit()
