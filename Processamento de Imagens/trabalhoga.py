@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from PIL import Image
+# from PIL import Image
 from matplotlib import pyplot as plt
 from os import system
 import os.path
