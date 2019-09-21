@@ -97,10 +97,17 @@ def reduzirColunaLinha(img):
     valor = int(input("Digite um valor para N: "))
     return img[::valor, ::valor]
 
-def reduzirTons(img):
-    r = 62
-    img = np.uint8(img/r) * r
-    return img
+def reduzirTons(img, r, status):
+    # r = 62
+    if(status == 0):
+        img = np.uint8(img/r) * r
+        print(status)
+        return img
+    else:
+        print(r)
+        img = np.uint8(img/r) * r
+        return img
+        
 
 def main():
     print(' ------------------------------------------------- ')
@@ -109,11 +116,12 @@ def main():
     print('| 3) Diminuir largura                             |')
     print('| 4) Diminuir altura                              |')
     print('| 5) Reduzir por colunas e linhas                 |')
-    print('| 6) Reduzir tons                                 |')
-    print('| 7) ------------                                 |')
-    print('| 8) Verificar imagens e seus histogramas         |')
-    print('| 9) Salvar imagem modificada                     |')
-    print('| 10) Sair                                        |')
+    print('| 6) Reduzir para 8 tons                          |')
+    print('| 7) Reduzir para 6 tons                          |')
+    print('| 8) Reduzir para 2 tons                          |')
+    print('| 9) Verificar imagens e seus histogramas         |')
+    print('| 10) Salvar imagem modificada                    |')
+    print('| 11) Sair                                        |')
     print(' ------------------------------------------------- ')
     # caminhoImg = "flor.pgm"
 
@@ -138,13 +146,16 @@ if __name__ == "__main__":
     done = False
     imagemOriginal = []
     imagemModificada = []
-
+    imagemQuantizada = []
+    
     imagemModificada = carregaImagem()
     imagemOriginal = imagemModificada
     cv2.imshow('imageModificada', imagemModificada)
     histEscalaCinza(imagemModificada)
+    status = 0
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
     while not done:
         system('cls')
         main()
@@ -155,6 +166,7 @@ if __name__ == "__main__":
             imagemOriginal = imagemModificada 
             cv2.imshow('imageModificada', imagemModificada)
             histEscalaCinza(imagemModificada)
+            status = 0
             cv2.waitKey(0)
             cv2.destroyAllWindows()
         #amplitude
@@ -187,24 +199,47 @@ if __name__ == "__main__":
             cv2.waitKey(0)
             cv2.destroyAllWindows()
 
-        
+        #Quantização
         elif option == '6':
-            imagemModificada = reduzirTons(imagemModificada)
-            cv2.imshow('Imagem com redução de tons', imagemModificada)
-            histEscalaCinza(imagemModificada)
+            imagemQuantizada = reduzirTons(imagemModificada, 31, status)
+            cv2.imshow('Imagem com redução de tons', imagemQuantizada)
+            histEscalaCinza(imagemQuantizada)
+            status = 1
             cv2.waitKey(0)
             cv2.destroyAllWindows()
         
         elif option == '7':
-            cv2.imshow('Imagem Original', imagemOriginal)
-            cv2.imshow('Imagem Modificada', imagemModificada)
-            mostrarImagenseHistograma(imagemOriginal, imagemModificada)
+            imagemQuantizada = reduzirTons(imagemModificada, 42, status)
+            cv2.imshow('Imagem com redução de tons', imagemQuantizada)
+            histEscalaCinza(imagemQuantizada)
+            status = 1
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
+        
+        elif option == '8':
+            imagemQuantizada = reduzirTons(imagemModificada, 127, status)
+            cv2.imshow('Imagem com redução de tons', imagemQuantizada)
+            histEscalaCinza(imagemQuantizada)
+            status = 1
             cv2.waitKey(0)
             cv2.destroyAllWindows()
 
         elif option == '9':
-            salvarImagem(imagemModificada)
+            cv2.imshow('Imagem Original', imagemOriginal)
+
+            if(status == 0):
+                cv2.imshow('Imagem Modificada', imagemModificada)
+                mostrarImagenseHistograma(imagemOriginal, imagemModificada)
+            else:
+                cv2.imshow('Imagem Modificada', imagemQuantizada)
+                mostrarImagenseHistograma(imagemOriginal, imagemQuantizada)
+
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
 
         elif option == '10':
+            salvarImagem(imagemModificada)
+
+        elif option == '11':
             done=True
             exit()
