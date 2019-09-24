@@ -165,6 +165,7 @@ if __name__ == "__main__":
             imagemModificada = scalaImagem(imagemModificada)
             cv2.imshow('Imagem em Escala', imagemModificada)
             histEscalaCinza(imagemModificada)
+            status = 0
             cv2.waitKey(0)
             cv2.destroyAllWindows()
 
@@ -172,6 +173,7 @@ if __name__ == "__main__":
             imagemModificada = diminuirLargura(imagemModificada)
             cv2.imshow('Imagem com largura diminuida', imagemModificada)
             histEscalaCinza(imagemModificada)
+            status = 0
             cv2.waitKey(0)
             cv2.destroyAllWindows()
         
@@ -179,14 +181,16 @@ if __name__ == "__main__":
             imagemModificada = diminuirAltura(imagemModificada)
             cv2.imshow('Imagem com altura diminuida', imagemModificada)
             histEscalaCinza(imagemModificada)
+            status = 0
             cv2.waitKey(0)
             cv2.destroyAllWindows()
 
         elif option == '5':
             n = 6
             imagemModificada = reduzirColunaLinha(imagemModificada)
-            cv2.imshow('Imagem com altura diminuida', imagemModificada)
+            cv2.imshow('Imagem com escala diminuida por linhas e colunas selecionadas', imagemModificada)
             histEscalaCinza(imagemModificada)
+            status = 0
             cv2.waitKey(0)
             cv2.destroyAllWindows()
 
