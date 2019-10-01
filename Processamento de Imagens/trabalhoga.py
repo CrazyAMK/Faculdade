@@ -218,6 +218,14 @@ if __name__ == "__main__":
             status = 1
             cv2.waitKey(0)
             cv2.destroyAllWindows()
+            
+        elif option == '12':
+            imagemQuantizada = reduzirTons(imagemModificada, 5, status)
+            cv2.imshow('51 Tons de Cinza', imagemQuantizada)
+            histEscalaCinza(imagemQuantizada)
+            status = 1
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
 
         elif option == '9':
             cv2.imshow('Imagem Original', imagemOriginal)
