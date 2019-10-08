@@ -6,6 +6,7 @@ e ter instalado as bibliotecas numpy e openCV, caso não tenha instalado siga os
 para intalação:
 
 pip install numpy
+
 pip install opencv-python
 
 # Execução
