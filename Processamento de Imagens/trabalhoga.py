@@ -102,7 +102,7 @@ def mostrarImagenseHistograma(imgOriginal, imgModificada):
 
 def reduzirColunaLinha(img):
     system('cls')
-    print("|         Redução Coluna          |")
+    print("|         Redução Linhas e Colunas          |")
     print("\nSeleciona uma em cada N colunas, \ne para cada coluna uma a cada N linhas.\n")
     valor = int(input("Digite um valor para N: "))
     return img[::valor, ::valor]
