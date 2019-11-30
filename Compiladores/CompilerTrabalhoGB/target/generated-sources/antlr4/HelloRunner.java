@@ -11,7 +11,7 @@ public class HelloRunner {
 		GramaticaLexer lexer = new GramaticaLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		GramaticaParser parser = new GramaticaParser(tokens);
-		ParseTree tree = parser.prog(); // begin parsing at rule 'r'
-		System.out.println(tree.toStringTree(parser)); // print LISP-style tree	
+		ParseTree tree = parser.prog(); // inicio do parsing da regra 'prog'
+		System.out.println(tree.toStringTree(parser)); // print arv LISP-style	
 	}
 }

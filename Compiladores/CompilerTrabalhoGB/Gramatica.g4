@@ -1,40 +1,132 @@
 grammar Gramatica;
 
-//Parser
-prog		: T_PROGRAMA identificador T_PONTOEVIRGULA bloco T_FIM { System.out.println("PASSOU TPROGRAMA"); };
 
-identificador	: T_LETRA (T_LETRA | T_UNDERLINE)* ;
+
+/* Parser */
+prog		: T_PROGRAMA identificador T_PONTOEVIRGULA bloco T_FIM { System.out.println("PASSOU"); };
 
 bloco		: ( etDeclaracao_Variaveis )* comandos ;
 
-comandos	: T_INICIOCOMANDO comando ( T_PONTOEVIRGULA comando )* (T_PONTOEVIRGULA)? ;
-
-comando		:	comando_escreva ;
-
-
-comando_escreva: T_ESCREVA T_ABREPARENTESES identificador T_FECHAPARENTESES;
-
-etSub_Rotina	: ;
 
 
 // Declaracoes
-
 etDeclaracao_Variaveis	: T_VAR	declaracao_var T_PONTOEVIRGULA 
 						  ( declaracao_var T_PONTOEVIRGULA )* (T_PONTOEVIRGULA)? ;
+
+declara_procedimento	: T_PROCEDIMENTO identificador T_PONTOEVIRGULA bloco ;
+
+declara_funcao	: T_FUNCAO identificador T_DOISPONTOS tipo T_PONTOEVIRGULA bloco ;
 
 declaracao_var			: identificador (T_VIRGULA identificador)* T_DOISPONTOS tipo ;
 
 tipo	: ( T_INTEIRO | T_BOOLEANO);
 
-// Lexer
+etsub_rotina	: (declara_procedimento T_PONTOEVIRGULA | declara_funcao T_PONTOEVIRGULA ) (declara_procedimento T_PONTOEVIRGULA | declara_funcao T_PONTOEVIRGULA )* ;
 
+
+
+//Comandos
+comandos	: T_INICIOCOMANDO comando ( T_PONTOEVIRGULA comando )* (T_PONTOEVIRGULA)? ;
+
+comando		:	( comando_escreva | comando_condicional | comando_enquanto | comando_leia | atribuicao_chprocedimento | comandos) ;
+
+atribuicao_chprocedimento	: ( comando_atribuicao | chamada_procedimento ) ;
+
+comando_atribuicao	: identificador T_ATRIBUICAO expressao ;
+
+chamada_procedimento	:	identificador ;
+
+comando_condicional	: T_SE expressao T_ENTAO comando ( T_SENAO comando )? ;
+
+comando_enquanto	: T_ENQUANTO expressao T_FACA comando ;
+
+comando_leia : T_LEIA T_ABREPARENTESES identificador T_FECHAPARENTESES ;
+
+comando_escreva: T_ESCREVA T_ABREPARENTESES identificador T_FECHAPARENTESES;
+
+
+
+//EXPRESSÕES
+expressao	: expressao_simples ( operador_relacional expressao_simples )? ;
+
+operador_relacional : ( T_DIFERENCA | T_IGUAL | T_MENOR | T_MAIOR | T_MAIORIGUAL ) ;
+
+expressao_simples	: ( T_MAIS | T_MENOS )? termo ( ( T_MAIS | T_MENOS | T_OU ) termo )? ;
+
+termo	: fator (( T_MULT | T_DIV | T_E ) fator)* ;
+
+fator	: (variavel | numero | chamada_funcao | T_ABREPARENTESES expressao T_FECHAPARENTESES | T_BOOLV | T_BOOLF | T_NEGACAO fator ) ;
+
+variavel	: identificador ;
+
+chamada_funcao	: identificador ;
+
+
+
+//NUMEROS E IDENTIFICADORES
+
+identificador	: T_LETRA (T_LETRA | T_DIGITO | T_UNDERLINE)* ;
+
+numero	: T_DIGITO (T_DIGITO)? ;
+
+
+
+/* Lexer */
+
+//Palavras reservadas
 T_PROGRAMA		: 'programa' ;
 
 T_INICIOCOMANDO	: 'inicio' ;
 
-T_INTEIRO		: 'inteiro';
+T_INTEIRO		: 'inteiro' ;
 
-T_BOOLEANO		: 'booleano';
+T_BOOLV	: 'verdadeiro' ;
+
+T_BOOLF	: 'falso' ;
+
+T_NEGACAO	: 'nao' ;
+
+T_LEIA	: 'leia' ;
+
+T_ENQUANTO	: 'enquanto' ;
+
+T_FACA	: 'faca' ;
+
+T_DIFERENCA	: '<>' ;
+
+T_IGUAL	: '=' ;
+
+T_MENOR	: '<' ;
+
+T_MAIOR	: '>' ;
+
+T_MAIORIGUAL : '>=' ;
+
+T_MULT	: '*' ;
+
+T_DIV	: 'div' ;
+
+T_OU	: 'ou' ;
+
+T_E	: 'e' ;
+
+T_MAIS	: '+' ;
+
+T_MENOS	: '-' ;
+
+T_PROCEDIMENTO	: 'procedimento' ;
+
+T_SE	: 'se' ;
+
+T_ENTAO	: 'entao' ;
+
+T_SENAO	: 'senao' ;
+
+T_ATRIBUICAO	: ':=' ;
+
+T_FUNCAO		: 'funcao' ;
+
+T_BOOLEANO		: 'booleano' ;
 
 T_FIMCOMANDO	: 'fim' ;
 
