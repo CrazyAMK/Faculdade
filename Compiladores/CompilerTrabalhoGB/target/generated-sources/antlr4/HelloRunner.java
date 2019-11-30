@@ -9,9 +9,13 @@ public class HelloRunner {
 		
 		CharStream input = CharStreams.fromString("programa teste ; inicio escreva( xablaus ); fim.");    
 		GramaticaLexer lexer = new GramaticaLexer(input);
+		
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
+		
 		GramaticaParser parser = new GramaticaParser(tokens);
+		
 		ParseTree tree = parser.prog(); // inicio do parsing da regra 'prog'
+		
 		System.out.println(tree.toStringTree(parser)); // print arv LISP-style	
 	}
 }

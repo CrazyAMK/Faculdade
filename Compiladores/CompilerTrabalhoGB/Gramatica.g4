@@ -150,7 +150,7 @@ T_UNDERLINE		: '_' ;
 
 T_DIGITO		: ('0'..'9')+ ;
 
-T_LETRA		: 	('a'..'z' | 'A'..'Z') ;	
+T_LETRA		: 	('a'..'z' | 'A'..'Z')+ ;
 
 WS 				: [ \t\r\n]+ -> skip ;
 
