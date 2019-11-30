@@ -483,7 +483,7 @@ footer {
   <div class="ebnf">
   <h4>Text notation:</h4>
   <div>
-    <span class="rule">comando_escreva</span> :  <a href="#T_ESCREVA" class="token">T_ESCREVA</a> <a href="#T_ABREPARENTESES" class="token">T_ABREPARENTESES</a> <a href="#identificador" class="rule">identificador</a> <a href="#T_FECHAPARENTESES" class="token">T_FECHAPARENTESES</a> ;
+    <span class="rule">comando_escreva</span> :  <a href="#T_ESCREVA" class="token">T_ESCREVA</a> <a href="#T_ABREPARENTESES" class="token">T_ABREPARENTESES</a> <span class="operator">(</span><a href="#identificador" class="rule">identificador</a> <span class="operator">|</span> <a href="#numero" class="rule">numero</a> <span class="operator">|</span> <a href="#expressao_simples" class="rule">expressao_simples</a><span class="operator">)</span> <a href="#T_FECHAPARENTESES" class="token">T_FECHAPARENTESES</a> ;
   </div>
   </div>
   <div class="railroad">
@@ -1197,7 +1197,7 @@ footer {
   <div class="ebnf">
   <h4>Text notation:</h4>
   <div>
-    <span class="rule">T_DOISPONTOS</span> :  <span class="literal">'.'</span> ;
+    <span class="rule">T_DOISPONTOS</span> :  <span class="literal">':'</span> ;
   </div>
   </div>
   <div class="railroad">

@@ -50,7 +50,7 @@ public class GramaticaLexer extends Lexer {
 			"'nao'", "'leia'", "'enquanto'", "'faca'", "'<>'", "'='", "'<'", "'>'", 
 			"'>='", "'*'", "'div'", "'ou'", "'e'", "'+'", "'-'", "'procedimento'", 
 			"'se'", "'entao'", "'senao'", "':='", "'funcao'", "'booleano'", "'fim'", 
-			"';'", "'fim.'", "'var'", "','", "'.'", "'('", "')'", "'escreva'", "'_'"
+			"';'", "'fim.'", "'var'", "','", "':'", "'('", "')'", "'escreva'", "'_'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -196,9 +196,9 @@ public class GramaticaLexer extends Lexer {
 		":\3\2\2\2\u00e3\u00e4\7=\2\2\u00e4<\3\2\2\2\u00e5\u00e6\7h\2\2\u00e6\u00e7"+
 		"\7k\2\2\u00e7\u00e8\7o\2\2\u00e8\u00e9\7\60\2\2\u00e9>\3\2\2\2\u00ea\u00eb"+
 		"\7x\2\2\u00eb\u00ec\7c\2\2\u00ec\u00ed\7t\2\2\u00ed@\3\2\2\2\u00ee\u00ef"+
-		"\7.\2\2\u00efB\3\2\2\2\u00f0\u00f1\7\60\2\2\u00f1D\3\2\2\2\u00f2\u00f3"+
-		"\7*\2\2\u00f3F\3\2\2\2\u00f4\u00f5\7+\2\2\u00f5H\3\2\2\2\u00f6\u00f7\7"+
-		"g\2\2\u00f7\u00f8\7u\2\2\u00f8\u00f9\7e\2\2\u00f9\u00fa\7t\2\2\u00fa\u00fb"+
+		"\7.\2\2\u00efB\3\2\2\2\u00f0\u00f1\7<\2\2\u00f1D\3\2\2\2\u00f2\u00f3\7"+
+		"*\2\2\u00f3F\3\2\2\2\u00f4\u00f5\7+\2\2\u00f5H\3\2\2\2\u00f6\u00f7\7g"+
+		"\2\2\u00f7\u00f8\7u\2\2\u00f8\u00f9\7e\2\2\u00f9\u00fa\7t\2\2\u00fa\u00fb"+
 		"\7g\2\2\u00fb\u00fc\7x\2\2\u00fc\u00fd\7c\2\2\u00fdJ\3\2\2\2\u00fe\u00ff"+
 		"\7a\2\2\u00ffL\3\2\2\2\u0100\u0102\4\62;\2\u0101\u0100\3\2\2\2\u0102\u0103"+
 		"\3\2\2\2\u0103\u0101\3\2\2\2\u0103\u0104\3\2\2\2\u0104N\3\2\2\2\u0105"+

@@ -7,7 +7,7 @@ public class HelloRunner {
 
 	public static void main(String[] args) throws IOException {
 		
-		CharStream input = CharStreams.fromString("programa teste ; inicio escreva( xablaus ); fim.");    
+		CharStream input = CharStreams.fromString("programa teste ; var x: inteiro; inicio x := 3; escreva(1336 + x); fim.");    
 		GramaticaLexer lexer = new GramaticaLexer(input);
 		
 		CommonTokenStream tokens = new CommonTokenStream(lexer);

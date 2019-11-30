@@ -42,7 +42,7 @@ comando_enquanto	: T_ENQUANTO expressao T_FACA comando ;
 
 comando_leia : T_LEIA T_ABREPARENTESES identificador T_FECHAPARENTESES ;
 
-comando_escreva: T_ESCREVA T_ABREPARENTESES identificador T_FECHAPARENTESES;
+comando_escreva: T_ESCREVA T_ABREPARENTESES (identificador | numero | expressao_simples) T_FECHAPARENTESES;
 
 
 
@@ -138,7 +138,7 @@ T_VAR			: 'var' ;
 				
 T_VIRGULA		: ',';
 				
-T_DOISPONTOS	: '.' ;
+T_DOISPONTOS	: ':' ;
 
 T_ABREPARENTESES : '(' ;
 
