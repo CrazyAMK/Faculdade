@@ -158,6 +158,7 @@ footer {
   <li><a href="#numero">numero</a></li>
   <li><a href="#T_PROGRAMA">T_PROGRAMA</a></li>
   <li><a href="#T_INICIOCOMANDO">T_INICIOCOMANDO</a></li>
+  <li><a href="#T_ASPAS">T_ASPAS</a></li>
   <li><a href="#T_INTEIRO">T_INTEIRO</a></li>
   <li><a href="#T_BOOLV">T_BOOLV</a></li>
   <li><a href="#T_BOOLF">T_BOOLF</a></li>
@@ -211,7 +212,7 @@ footer {
   <div class="ebnf">
   <h4>Text notation:</h4>
   <div>
-    <span class="rule">prog</span> :  <a href="#T_PROGRAMA" class="token">T_PROGRAMA</a> <a href="#identificador" class="rule">identificador</a> <a href="#T_PONTOEVIRGULA" class="token">T_PONTOEVIRGULA</a> <a href="#bloco" class="rule">bloco</a> <a href="#T_FIM" class="token">T_FIM</a> <span class="operator">{ System.out.println("PASSOU"); }</span> ;
+    <span class="rule">prog</span> :  <a href="#T_PROGRAMA" class="token">T_PROGRAMA</a> <a href="#identificador" class="rule">identificador</a> <a href="#T_PONTOEVIRGULA" class="token">T_PONTOEVIRGULA</a> <a href="#bloco" class="rule">bloco</a> <a href="#T_FIM" class="token">T_FIM</a> ;
   </div>
   </div>
   <div class="railroad">
@@ -296,7 +297,7 @@ footer {
   <div class="ebnf">
   <h4>Text notation:</h4>
   <div>
-    <span class="rule">declaracao_var</span> :  <a href="#identificador" class="rule">identificador</a> <span class="operator">(</span><a href="#T_VIRGULA" class="token">T_VIRGULA</a> <a href="#identificador" class="rule">identificador</a><span class="operator">)</span><span class="operator">*</span> <a href="#T_DOISPONTOS" class="token">T_DOISPONTOS</a> <a href="#tipo" class="rule">tipo</a> ;
+    <span class="rule">declaracao_var</span> :  <a href="#identificador" class="rule">identificador</a> <span class="operator">{mapaVar.put(LT.(0).getText(), LT(0).getText() );}</span> <span class="operator">(</span><a href="#T_VIRGULA" class="token">T_VIRGULA</a> <a href="#identificador" class="rule">identificador</a> <span class="operator">{mapaVar.put(LT.(0).getText(), LT(0).getText() );}</span> <span class="operator">)</span><span class="operator">*</span> <a href="#T_DOISPONTOS" class="token">T_DOISPONTOS</a> <a href="#tipo" class="rule">tipo</a> ;
   </div>
   </div>
   <div class="railroad">
@@ -313,7 +314,7 @@ footer {
   <div class="ebnf">
   <h4>Text notation:</h4>
   <div>
-    <span class="rule">tipo</span> :  <span class="operator">(</span> <a href="#T_INTEIRO" class="token">T_INTEIRO</a> <span class="operator">|</span> <a href="#T_BOOLEANO" class="token">T_BOOLEANO</a><span class="operator">)</span> ;
+    <span class="rule">tipo</span> :  <span class="operator">(</span> <a href="#T_INTEIRO" class="token">T_INTEIRO</a> <span class="operator">|</span> <a href="#T_BOOLEANO" class="token">T_BOOLEANO</a> <span class="operator">)</span> ;
   </div>
   </div>
   <div class="railroad">
@@ -381,7 +382,7 @@ footer {
   <div class="ebnf">
   <h4>Text notation:</h4>
   <div>
-    <span class="rule">atribuicao_chprocedimento</span> :  <span class="operator">(</span> <a href="#comando_atribuicao" class="rule">comando_atribuicao</a> <span class="operator">|</span> <a href="#chamada_procedimento" class="rule">chamada_procedimento</a> <span class="operator">)</span> ;
+    <span class="rule">atribuicao_chprocedimento</span> :  <span class="operator">(</span> <a href="#comando_atribuicao" class="rule">comando_atribuicao</a> <span class="operator">|</span> <a href="#chamada_procedimento" class="rule">chamada_procedimento</a><span class="operator">)</span> ;
   </div>
   </div>
   <div class="railroad">
@@ -466,7 +467,9 @@ footer {
   <div class="ebnf">
   <h4>Text notation:</h4>
   <div>
-    <span class="rule">comando_leia</span> :  <a href="#T_LEIA" class="token">T_LEIA</a> <a href="#T_ABREPARENTESES" class="token">T_ABREPARENTESES</a> <a href="#identificador" class="rule">identificador</a> <a href="#T_FECHAPARENTESES" class="token">T_FECHAPARENTESES</a> ;
+    <span class="rule">comando_leia</span> :  <a href="#T_LEIA" class="token">T_LEIA</a> <a href="#T_ABREPARENTESES" class="token">T_ABREPARENTESES</a> <span class="operator">(</span><a href="#identificador" class="rule">identificador</a> <span class="operator">{ if (mapaVar.get(LT(0).getText()) == null){
+    													  		throw new RuntimeException("ID nao declarado")
+    													  }; }</span> <span class="operator">)</span> <a href="#T_FECHAPARENTESES" class="token">T_FECHAPARENTESES</a> ;
   </div>
   </div>
   <div class="railroad">
@@ -483,7 +486,7 @@ footer {
   <div class="ebnf">
   <h4>Text notation:</h4>
   <div>
-    <span class="rule">comando_escreva</span> :  <a href="#T_ESCREVA" class="token">T_ESCREVA</a> <a href="#T_ABREPARENTESES" class="token">T_ABREPARENTESES</a> <span class="operator">(</span><a href="#identificador" class="rule">identificador</a> <span class="operator">|</span> <a href="#numero" class="rule">numero</a> <span class="operator">|</span> <a href="#expressao_simples" class="rule">expressao_simples</a><span class="operator">)</span> <a href="#T_FECHAPARENTESES" class="token">T_FECHAPARENTESES</a> ;
+    <span class="rule">comando_escreva</span> :  <a href="#T_ESCREVA" class="token">T_ESCREVA</a> <a href="#T_ABREPARENTESES" class="token">T_ABREPARENTESES</a> <span class="operator">(</span> <a href="#identificador" class="rule">identificador</a> <span class="operator">|</span> <a href="#numero" class="rule">numero</a> <span class="operator">|</span> <a href="#expressao_simples" class="rule">expressao_simples</a> <span class="operator">)</span> <a href="#T_FECHAPARENTESES" class="token">T_FECHAPARENTESES</a> ;
   </div>
   </div>
   <div class="railroad">
@@ -568,7 +571,7 @@ footer {
   <div class="ebnf">
   <h4>Text notation:</h4>
   <div>
-    <span class="rule">fator</span> :  <span class="operator">(</span><a href="#variavel" class="rule">variavel</a> <span class="operator">|</span> <a href="#numero" class="rule">numero</a> <span class="operator">|</span> <a href="#chamada_funcao" class="rule">chamada_funcao</a> <span class="operator">|</span> <a href="#T_ABREPARENTESES" class="token">T_ABREPARENTESES</a> <a href="#expressao" class="rule">expressao</a> <a href="#T_FECHAPARENTESES" class="token">T_FECHAPARENTESES</a> <span class="operator">|</span> <a href="#T_BOOLV" class="token">T_BOOLV</a> <span class="operator">|</span> <a href="#T_BOOLF" class="token">T_BOOLF</a> <span class="operator">|</span> <a href="#T_NEGACAO" class="token">T_NEGACAO</a> <a href="#fator" class="rule">fator</a> <span class="operator">)</span> ;
+    <span class="rule">fator</span> :  <span class="operator">(</span><a href="#variavel" class="rule">variavel</a> <span class="operator">|</span> <a href="#numero" class="rule">numero</a> <span class="operator">|</span> <a href="#chamada_funcao" class="rule">chamada_funcao</a> <span class="operator">|</span> <a href="#T_ABREPARENTESES" class="token">T_ABREPARENTESES</a> <a href="#expressao" class="rule">expressao</a> <a href="#T_FECHAPARENTESES" class="token">T_FECHAPARENTESES</a> <span class="operator">|</span> <a href="#T_BOOLV" class="token">T_BOOLV</a> <span class="operator">|</span> <a href="#T_BOOLF" class="token">T_BOOLF</a> <span class="operator">|</span> <a href="#T_NEGACAO" class="token">T_NEGACAO</a> <a href="#fator" class="rule">fator</a><span class="operator">)</span> ;
   </div>
   </div>
   <div class="railroad">
@@ -676,6 +679,23 @@ footer {
   <div class="railroad">
   <h4>Visual notation:</h4>
   <img border="0" src="images/T_INICIOCOMANDO.png" />
+  </div>
+  </li>
+  <li class="rule" id="T_ASPAS">
+  <h3>T_ASPAS <a class="topLink" title="Go to top" href="Gramatica.g4.html">Top</a></h3>
+  <div class="doc">
+    <p>
+    </p>
+  </div>
+  <div class="ebnf">
+  <h4>Text notation:</h4>
+  <div>
+    <span class="rule">T_ASPAS</span> :  <span class="literal">'"'</span> ;
+  </div>
+  </div>
+  <div class="railroad">
+  <h4>Visual notation:</h4>
+  <img border="0" src="images/T_ASPAS.png" />
   </div>
   </li>
   <li class="rule" id="T_INTEIRO">
